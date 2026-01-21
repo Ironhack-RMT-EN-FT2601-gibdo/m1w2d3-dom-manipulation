@@ -50,7 +50,9 @@ console.log(something)
 
 
 // querySelector is mainly used to find things in the whole document. BUT can be used to search things inside a specific node.
-*/
+
+
+//* DOM Manipulation
 
 let h1Node = document.querySelector("h1") // fist available h1
 
@@ -86,6 +88,8 @@ deleteBtnNode.addEventListener("click", () => {
 
 })
 
+*/
+
 //* adding new nodes
 let inputNode = document.querySelector("#name")
 let addBtnNode = document.querySelector("#add-form button")
@@ -98,13 +102,78 @@ addBtnNode.addEventListener("click", () => {
   // extract the text from the input
   let textFromUser = inputNode.value
 
-  // create the new li element
-  let newLiNode = document.createElement("li") // <li></li>
-  // add the text to the li
-  newLiNode.innerText = textFromUser
-  console.log(newLiNode)
+  // // create the new li element
+  // let newLiNode = document.createElement("li") // <li></li>
+  // // add the text to the li
+  // newLiNode.innerText = textFromUser
+  // console.log(newLiNode)
 
-  // insert the li into the ul
-  ulNode.append(newLiNode)
+  // // insert the li into the ul
+  // ulNode.append(newLiNode)
 
+  ulNode.innerHTML += `
+    <div>
+      <li>${textFromUser}</li>
+    </div>
+  `
+
+})
+
+
+//* most common event types
+
+// - click
+// - double click
+// - mouseenter and mouseleave
+// - submit and change
+// - keyboard
+// - cut and copy
+
+//* DOM Manipulation (styles)
+
+let sectionNode = document.querySelector("#final-section")
+
+sectionNode.addEventListener("click", () => {
+
+  console.log(sectionNode.className)
+  // sectionNode.className = "container red-container"
+
+  console.log(sectionNode.classList)
+
+  // sectionNode.classList.remove("blue-container")
+  // sectionNode.classList.add("red-container")
+
+  sectionNode.classList.toggle("blue-container")
+  sectionNode.classList.toggle("red-container")
+
+})
+
+let styleH2Node = document.querySelector("#last-h2")
+
+
+styleH2Node.addEventListener("click", (event) => {
+
+  // console.log(event)
+
+  console.log( styleH2Node.style )
+  styleH2Node.style.color = "red"
+  styleH2Node.style.backgroundColor = "black"
+  styleH2Node.style.padding = "20px"
+  styleH2Node.style.borderRadius = "10px"
+
+})
+
+
+// whenever I click the button, then button will change place in the screen
+
+let lastBtn = document.querySelector("#last-btn")
+lastBtn.style.position = "fixed" 
+lastBtn.style.top = "0px" 
+lastBtn.style.left = "0px" 
+
+lastBtn.addEventListener("click", () => {
+  let ranX = Math.floor(Math.random() * 200) 
+  let ranY = Math.floor(Math.random() * 200) 
+  lastBtn.style.top = `${ranY}px`
+  lastBtn.style.left = `${ranX}px`
 })
